@@ -1,5 +1,5 @@
 @echo off
-title FIT STATUS
+title GIT STATUS
 echo.
 echo ------------------------------------
 echo -   HOLA, ejecutando comando...   -
