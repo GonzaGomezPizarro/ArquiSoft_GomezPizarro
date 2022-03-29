@@ -49,6 +49,11 @@ func main() {
 	if err != nil {
 		// handle error
 	}
-	fmt.Println(" -> Las categorias son: \n", cats)
+	//fmt.Println("\n\n -> Las categorias son: \n\n", cats, "\n\n -> Gracias por pasasr ...")
+	fmt.Println("\n -> Las categorias son:")
+	for _, c := range cats {
+		fmt.Println(" -", c.Name)
+	}
 
+	fmt.Println(" \n Gracias por pasasr ...")
 }
