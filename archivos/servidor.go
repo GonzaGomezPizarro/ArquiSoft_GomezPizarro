@@ -8,11 +8,24 @@ import (
 )
 
 func GetCategories(siteID string) (Categories, error) {
-	response := http.Get(siteID)
-	bytes := ioutil.ReadAll(response.bytes) // completar
+	response, a := http.Get(siteID)
+	if a != nil {
+		fmt.Println("Error al conectar con el servidor", a)
+		return Categories{}, a
+	}
+
+	bytes, b := ioutil.ReadAll(response.Body)
+	if b != nil {
+		fmt.Println("Error al leer la respuesta del servidor", b)
+		return Categories{}, b
+	}
 
 	var cats Categories
 	err := json.Unmarshal(bytes, &cats) // completar
+	if err != nil {
+		fmt.Println("Error al deserializar la respuesta del servidor", err)
+		return Categories{}, err
+	}
 
 	return cats, nil
 }
