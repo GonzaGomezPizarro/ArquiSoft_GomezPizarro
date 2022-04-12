@@ -1,7 +1,9 @@
 package main
 
 import (
-	"github.com/gin-gogo gnic/gin" // tira error
+	"net/http"
+
+	"github.com/gin-gonic/gin" // tira error
 )
 
 func main() {
@@ -11,9 +13,13 @@ func main() {
 
 }
 
-func Test (ctx *gin.Context) {
-	var body body
-	err:= ctx.BindJSON(&body)
+type Body struct {
+	Name string `json:"name"`
+}
+
+func Test(ctx *gin.Context) {
+	var body Body
+	err := ctx.BindJSON(&body)
 	if err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
 		return
@@ -21,6 +27,6 @@ func Test (ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, body)
 }
 
-func Ping (ctx *gin.Context) {
+func Ping(ctx *gin.Context) {
 	ctx.String(200, "pong")
 }
